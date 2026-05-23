@@ -1,0 +1,27 @@
+[project]
+name = "inbox"
+version = "0.1.0"
+description = "Add your description here"
+requires-python = ">=3.14"
+dependencies = [
+    "typer>=0.24.1",
+]
+
+[tool.pytest.ini_options]
+addopts = [
+  "--cov=src",
+  "--cov-report=term-missing",
+  "-q",
+]
+testpaths = ["tests"]
+pythonpath = ["src"]
+
+[tool.coverage.run]
+source = ["src"]
+branch = false
+parallel = true
+omit = ["*/__init__.py", "*/__main__.py", "*/cli.py*", "*/config.py*", "*/constants.py*", "*/message.py*", "*/message_source.py*", "*/api.py*", "*/config.py*", "*/cli.py*", "*/core.py*", "*/json.py*", "*/stdin.py*", "*/repository.py*", "*/task.py*", "*/descriptors.py*"]
+
+[tool.coverage.report]
+show_missing = true
+fail_under = 40
