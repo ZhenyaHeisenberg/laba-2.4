@@ -7,11 +7,13 @@ from src.models.handlers.email import EmailHandler
 from src.models.handlers.encryption import EncryptionHandler
 from src.models.handlers.http import HttpHandler
 
+import logging
 
+logger = logging.getLogger(__name__)
 
 
 class Executor:
-    """Асинхронный исполнитель задач."""
+    """Асинхронный исполнитель задач"""
     
     def __init__(self, source=None):
         self.queue = TaskQueue.create_from(source) if source else TaskQueue(iter([]))
@@ -27,10 +29,10 @@ class Executor:
         task_type = getattr(task, 'type', 'default')
         
         if task_type not in self._handlers:
+            logger.error(f"No handler for task type: {task_type}")
             raise ValueError(f"No handler for task type: {task_type}")
         
         handler = self._handlers[task_type]
-        print("-----")
         return handler.handle 
     
     
@@ -41,9 +43,9 @@ class Executor:
         async def process(task: Task):
             async with semaphore:
                 handler = self.get_handler(task)
-                print(f"handler: {handler}, type: {getattr(task, 'type', 'default')}")
                 return await handler(task)
         
         tasks = [process(task) for task in self.queue]
         
         await asyncio.gather(*tasks)
+        logger.info("Выполнение завершено")
