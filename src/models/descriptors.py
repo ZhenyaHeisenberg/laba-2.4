@@ -81,6 +81,22 @@ class DescriptionDescriptor(SampleDescriptor):
         logger.info(f"{self.public_name} установлен: {value}")
 
 
+class TypeDescriptor(SampleDescriptor):
+    """DATA: Валидирует данные, запрещает изменение"""
+    def __set__(self, instance, value: str) -> None:
+        """Устанавливает значение атрибута"""
+
+        # Универсальная валидация
+        validate_string_field("Type", instance, value, 50)
+
+        if hasattr(instance, self.private_name):
+            logger.error("Изменение типа не допускается")
+            raise ValueError("Изменение типа не допускается")
+        
+        setattr(instance, self.private_name, value)
+        logger.info(f"{self.public_name} установлен: {value}")
+
+
 class PriorityDescriptor(SampleDescriptor):
     """DATA: Валидирует данные, разрешает изменение"""
     def __set__(self, instance: Any, value: int) -> None:

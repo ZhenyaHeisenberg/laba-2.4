@@ -12,16 +12,23 @@
 <pre>
 src/
 ├── main.py                             # Точка входа
+├── demonstration.py                    # Демнонстрация работоспособности
 ├── cli.py                              # Интерфейс командной строки
 ├── contracts/
 │   ├── message.py                      # Message
 │   └── message_source.py               # MessageSource
 ├── inbox/
-│   ── core.py                          # Ядро с проверкой контракта
+│   └── core.py                         # Ядро с проверкой контракта
 ├── models/
-│   ├── task.py # Класс Task (из лаб.2)
+│   ├── task.py                         # Класс Task
+│   ├── descriptors.py                  # Дескрипторы для Task
 │   ├── task_queue.py                   # Очередь задач
-│   └── generator.py                    # Генератор задач
+│   ├── generator.py                    # Генератор задач
+│   ├── executor.py                     # Асинхронный исполнитель задач
+│   └── handlers/
+│       ├── email.py                    # Исполнитель задач type: email
+│       ├── encryption.py               # Исполнитель задач type: encryption
+│       └── http.py                     # Исполнитель задач type: http
 ├── sources/
 │   ├── repository.py # Реестр источников
 │   ├── stdin.py                        # Чтение из STDIN

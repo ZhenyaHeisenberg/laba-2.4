@@ -48,6 +48,7 @@ class TaskQueue:
             for item in iterator:
                 yield Task(
                     id=item.id,
+                    type=item.type,
                     description=getattr(item, "description"),
                     priority=getattr(item, "priority"),
                     status=getattr(item, "status")
@@ -55,7 +56,7 @@ class TaskQueue:
         return cls(convert())
     
     def __iter__(self) -> TaskIterator:
-        return TaskIterator(self)
+        return TaskIterator(self._source, self._buffer)
     
     def filter_by_status(self, status: str) -> "TaskQueue":
         def filtered():

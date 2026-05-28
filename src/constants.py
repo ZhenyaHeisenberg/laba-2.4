@@ -6,3 +6,6 @@ READY = {"создана", "created", "готово", "ready"}
 
 # Статусы для 3-й лабы
 STATUSES = ['created', 'ready', 'running', 'completed', 'failed', 'canceled']
+
+# Типы задач
+TYPES = ['email', 'encryption', 'http']

@@ -4,7 +4,7 @@ from dataclasses import dataclass
 
 from src.contracts.message import Message
 from src.sources.repository import register_source
-from ..constants import STATUSES
+from ..constants import STATUSES, TYPES
 
 from random import randint
 
@@ -28,6 +28,7 @@ class ApiSource:
         for i in range(self.count):
             result.append({
                 "id": str(uuid4()),
+                "type": TYPES[randint(0, len(TYPES)-1)],
                 "title": f"API Task {i}",
                 "description": f"API Task: {i}",
                 "author": "System",
@@ -49,6 +50,7 @@ class ApiSource:
             for item in response:
                 yield Message(
                     id=item["id"],
+                    type=item["type"],
                     title=item["title"],
                     description=item["description"],
                     author=item["author"],

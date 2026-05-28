@@ -1,4 +1,4 @@
-from .descriptors import IdDescriptor, DescriptionDescriptor, PriorityDescriptor, StatusDescriptor, CreationTimeDescriptor
+from .descriptors import IdDescriptor, TypeDescriptor, DescriptionDescriptor, PriorityDescriptor, StatusDescriptor, CreationTimeDescriptor
 from src.constants import READY
 from datetime import datetime
 
@@ -6,13 +6,15 @@ from datetime import datetime
 class Task:
 
     id = IdDescriptor()
+    type = TypeDescriptor()
     description = DescriptionDescriptor()
     priority = PriorityDescriptor()
     status = StatusDescriptor()
     creationTime = CreationTimeDescriptor()
     
-    def __init__(self, id: str, description: str, priority: int, status: str):
+    def __init__(self, id: str, type: str, description: str, priority: int, status: str):
         self.id = id
+        self.type = type
         self.description = description
         self.priority = priority
         self.status = status

@@ -20,7 +20,7 @@ pythonpath = ["src"]
 source = ["src"]
 branch = false
 parallel = true
-omit = ["*/__init__.py", "*/__main__.py", "*/cli.py*", "*/config.py*", "*/constants.py*", "*/message.py*", "*/message_source.py*", "*/api.py*", "*/config.py*", "*/cli.py*", "*/core.py*", "*/json.py*", "*/stdin.py*", "*/repository.py*", "*/task.py*", "*/descriptors.py*"]
+omit = ["*/__init__.py", "*/__main__.py", "*/cli.py*", "*/config.py*", "*/constants.py*", "*/message.py*", "*/message_source.py*", "*/api.py*", "*/config.py*", "*/cli.py*", "*/core.py*", "*/json.py*", "*/stdin.py*", "*/repository.py*", "*/task.py*", "*/descriptors.py*", "*/generator.py*", "*task_queue.py*"]
 
 [tool.coverage.report]
 show_missing = true

@@ -1,7 +1,7 @@
 from uuid import uuid4
 from typing import Iterable
 from src.models.task import Task
-from src.constants import STATUSES
+from src.constants import STATUSES, TYPES
 from random import randint
 
 
@@ -14,6 +14,7 @@ class Generator:
         for _ in range(self.count):
             yield Task(
                 id=str(uuid4()),
+                type=TYPES[randint(0, len(TYPES)-1)],
                 description=f"Generated task with id: {self.id}",
                 priority=randint(1, 5),
                 status=STATUSES[randint(0, len(STATUSES)-1)],
