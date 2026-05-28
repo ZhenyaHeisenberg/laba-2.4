@@ -73,14 +73,12 @@ src/
 
 <h3>Демонстрация работы</h3>
 В корне проекта
-\```
-python demonstration.py
-\```
+
+`python demonstration.py`
 
 <h2>Покрытие тестами</h2>
-```
-python -m pytest --cov=src --cov-report=term-missing
-```
+
+`python -m pytest --cov=src --cov-report=term-missing`
 
 <pre>
 Name                                Stmts   Miss  Cover   Missing
